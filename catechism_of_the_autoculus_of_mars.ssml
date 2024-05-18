@@ -1,0 +1,33 @@
+<speak><voice name="Justin"><lang xml:lang="en-US">
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud">Toll the Great Bell Once!</prosody>
+    </prosody>
+  </s>
+  <s>
+    <prosody pitch="x-low">Pull the Lever forward to engage the Piston and Pump...</prosody>
+  </s>
+  <s/>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud">Toll the Great Bell Twice!</prosody>
+    </prosody>
+  </s>
+  <s/>
+  <s>
+    <prosody pitch="x-low">With push of Button fire the Engine And spark Turbine into life...</prosody>
+  </s>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud">Toll the Great Bell Thrice!</prosody>
+    </prosody>
+  </s>
+  <s>
+    <break strength="medium"/>
+    <prosody pitch="x-low">Sing Praise to the God of All Machines</prosody>
+  </s>
+  <s>
+    <prosody pitch="low"/>
+  </s>
+  <s/>
+</lang></voice></speak>

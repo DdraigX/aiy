@@ -1,0 +1,15 @@
+<speak>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud">To attend the highest form you can, your flesh will be only part of the journey, To become perfect you must cast of the biological limit of your body and reach out for the divine knowledge of the Machine God. <break time="500ms"/> Join us in the Quest for Knowledge, a life is only worth the knowledge he have gathered during his life, reach out! Reach out for steel and wire!</prosody>
+    </prosody>
+  </s>
+  <s>
+    <prosody pitch="-2"> </prosody>
+  </s>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud"/>
+    </prosody>
+  </s>
+</speak>
