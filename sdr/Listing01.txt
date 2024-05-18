@@ -1,0 +1,33 @@
+# FM_radio.py
+# simple FM radio test utility using a RTL SDR dongle
+import subprocess, signal, os, time
+def newstation(station):
+    global process, stnum
+    # create a rtl_fm command line string and insert the new freq
+    part1 = "rtl_fm -f "
+    part2 = "e6  -s 200000 -r 48000 - | aplay -r 48000 -f S16_LE"
+    cmd = part1 + station + part2
+    print ('Playing station :', station)
+    # kill the old fm connection if it was running
+    if process != 0:
+        process = int(subprocess.check_output(["pidof","rtl_fm"] ))
+        print ("Process pid = ", process)
+        if process != 0:
+            os.kill(process,signal.SIGINT)
+            time.sleep(2) # wait 2 seconds to restart rtl_fm
+    # start the new fm connection
+    print (cmd)
+    process = subprocess.Popen(cmd, shell=True)
+def setvolume(thevolume):
+    # pass the new volume setting to the amixer command
+    os.system('amixer sset "PCM" ' + thevolume)
+    print ('volume = ' , thevolume)
+# Simple FM radio test program
+process = 0
+print ("Simple FM radio test program\n")
+while True:
+    answer = raw_input("Enter a radio station (i.e. 107.9) or volume (i.e. 50%): ")
+    if answer.find('%') > 0:
+        setvolume(answer)
+    else:
+        newstation(answer)

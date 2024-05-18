@@ -1,0 +1,55 @@
+#!/usr/bin/python
+# PI_FM_radion.py - FM Radio with an LCD Shield for controlling the stations and volume
+import os, subprocess, signal
+import time
+import Adafruit_CharLCD as LCD
+def newstation(direction):
+    global stnum, stations, process
+    print 'stnum=',stnum,'direction=',direction
+    part1 = "rtl_fm -f "
+    part2 = " -s 200000 -r 48000 | aplay -r 48000 -f S16_LE"
+    if (stnum + direction < (len(stations)  )) and (stnum + direction > -1):
+        stnum = stnum + direction
+        print('Playing station :', stations[stnum])
+        cmd = part1 + stations[stnum] + part2
+        if process != 0:
+            process = int(subprocess.check_output(["pidof","rtl_fm"] ))
+            print "Process pid = ", process
+            os.kill(process,signal.SIGINT)
+        # start the new fm connection
+        print cmd
+        process = subprocess.Popen(cmd, shell=True)
+def setvolume(voldif):
+    global thevolume
+    if (thevolume + voldif > 0) and (thevolume + voldif <100):
+        thevolume = thevolume + voldif
+        os.system('amixer sset "PCM" ' + str(thevolume) + '%')
+        print 'volume = ' , thevolume
+lcd = LCD.Adafruit_CharLCDPlate()
+# Add your own stations and station info
+stations = ['95.3e6','94.7e6','102.9e6','107.9e6']
+sinfo = ['95.3 country', '94.7 light','102.9 easy','Y108 Rock\nHamilton ']
+thevolume = 40  #initial volume
+stnum = 1         #pick a starting station
+process = 0
+newstation(0)
+lcd.message(sinfo[stnum])
+setvolume(thevolume)
+print 'Press Ctrl-C to quit.'
+while True:  #look for button presses
+    if lcd.is_pressed(LCD.UP):
+        setvolume(5)
+        time.sleep(0.25)
+    if lcd.is_pressed(LCD.DOWN):
+        setvolume(-5)
+        time.sleep(0.25)
+    if lcd.is_pressed(LCD.LEFT):
+        newstation(-1)
+        lcd.clear()
+        lcd.message(sinfo[stnum])
+        time.sleep(0.25)
+    if lcd.is_pressed(LCD.RIGHT):
+        newstation(1)
+        lcd.clear()
+        lcd.message(sinfo[stnum])
+        time.sleep(0.25)

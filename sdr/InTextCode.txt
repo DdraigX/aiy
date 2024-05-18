@@ -1,0 +1,20 @@
+sudo apt-get install rtl-sdr
+
+
+rtl_fm -f 107.9e6 -s 200000 -r 48000 | aplay -r 48000 -f S16_LE
+
+
+pi@raspberrypi:~ $ ps -e | grep rtl_fm
+ 1709 pts/0    00:00:33 rtl_fm
+pi@raspberrypi:~ $ kill 1709
+pi@raspberrypi:~ $ ps -e | grep rtl_fm
+pi@raspberrypi:~ $
+
+
+amixer sset "PCM" 70%
+
+
+$ python FM_radio.py
+Simple FM radio test program
+
+

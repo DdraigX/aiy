@@ -1,0 +1,15 @@
+"{
+    'input':{
+     'ssml':'<speak>The <say-as interpret-as=\"characters\" pitch="10">SSML</say-as>
+          standard <break time=\"1s\"/>is defined by the
+          <sub alias=\"World Wide Web Consortium\">W3C</sub>.</speak>'
+    },
+    'voice':{
+      'languageCode':'en-us',
+      'name':'en-US-Standard-B',
+      'ssmlGender':'MALE'
+    },
+    'audioConfig':{
+      'audioEncoding':'MP3'
+    }
+  }"

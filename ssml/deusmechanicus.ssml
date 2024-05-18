@@ -1,0 +1,17 @@
+<speak>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud">The machine God, the Deus Mechanicus, The Omnissiah is the source of all knowledge and technology of man. Look on it's perfection, every part made to fit together, it comes from a divine source! And all this knowledge is locked away inside the Holy Standard Template Construct.</prosody>
+    </prosody>
+  </s>
+  <s>
+    <prosody pitch="-2"> </prosody>
+  </s>
+  <s>
+    <prosody pitch="x-low">
+      <prosody volume="x-loud"/>
+    </prosody>
+  </s>
+</speak>
+
+
