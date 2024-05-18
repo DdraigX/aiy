@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+# NeoPixel library strandtest example
+# Author: Tony DiCola (tony@tonydicola.com)
+#
+# Direct port of the Arduino NeoPixel library strandtest example.  Showcases
+# various animations on a strip of NeoPixels.
+
+import time
+from rpi_ws281x import PixelStrip, Color
+import argparse
+
+LED_COUNT = 12
+LED_PIN = 10
+LED_FREQ_HZ = 800000
+LED_DMA = 10
+LED_BRIGHTNESS = 10
+LED_INVERT = False
+LED_CHANNEL = 0
+
+
+
+def loadColor(strip, color, wait_ms=5000):
+    #for i in range(strip.numPixels()):
+    strip.setPixelColor(0, color)
+    strip.setPixelColor(1, color)
+    strip.setPixelColor(2, color)
+    strip.setPixelColor(3, color)
+    strip.setPixelColor(4, color)
+    strip.setPixelColor(5, color)
+    strip.setPixelColor(6, color)
+    strip.setPixelColor(7, color)
+    strip.setPixelColor(8, color)
+    strip.setPixelColor(9, color)
+    strip.setPixelColor(10, color)
+    strip.setPixelColor(11, color)
+    strip.show()
+    time.sleep(wait_ms / 1000.0)
+
+
+def pulse():
+    #fade in
+    for i in range(5, 10, 2):
+        time.sleep(.3)
+        strip.setBrightness(i)
+        print(i)
+        strip.show()
+    #fade out
+    for i in range(10, 5, -2):
+        time.sleep(.3)
+        strip.setBrightness(i)
+        print(i)
+        strip.show()
+
+
+# Main program logic follows:
+if __name__ == '__main__':
+    # Process arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
+    args = parser.parse_args()
+
+    # Create NeoPixel object with appropriate configuration.
+    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    # Intialize the library (must be called once before other functions).
+    strip.begin()
+    strip.setPixelColor(1, Color(255,0,255))
+    strip.show()
+    time.sleep(10)
+
+    print('Press Ctrl-C to quit.')
+    if not args.clear:
+        print('Use "-c" argument to clear LEDs on exit')
+
+    try:
+
+        while True:
+            print('Loading Red')
+            loadColor(strip, Color(255,0,0))
+            #pulse()
+            #pulse()
+            #pulse()
+            print('Loading Green')
+            loadColor(strip, Color(0, 255, 0))
+            print('Loading Blue')
+            loadColor(strip, Color(0, 0, 255))
+            print('Loading Yellow')
+            loadColor(strip, Color(255, 255, 0))
+            #print('Color wipe animations.')
+            #colorWipe(strip, Color(255, 0, 0))  # Red wipe
+            #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+            #colorWipe(strip, Color(0, 0, 255))  # Green wipe
+            #print('Theater chase animations.')
+            #theaterChase(strip, Color(127, 127, 127))  # White theater chase
+            #theaterChase(strip, Color(127, 0, 0))  # Red theater chase
+            #theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+            #print('Rainbow animations.')
+            #rainbow(strip)
+            #rainbowCycle(strip)
+            #theaterChaseRainbow(strip)
+
+    except KeyboardInterrupt:
+        if args.clear:
+            loadColor(strip, Color(0, 0, 0), 10)
