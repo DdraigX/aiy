@@ -27,7 +27,7 @@ from PIL import ImageFont
 
 # Bitstamp uses Pusher for websocket communication. This is their public Pusher key.
 # Refer to https://www.bitstamp.net/websocket/ for more documentation.
-BITSTAMP_PUSHER_KEY = 'de504dc5763aeef9ff52'
+BITSTAMP_PUSHER_KEY = 'XXXX'
 
 font_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
                             'fonts', 'C&C Red Alert [INET].ttf'))
